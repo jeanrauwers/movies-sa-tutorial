@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import API_KEY from "./api-config";
+
+const dataFetcher = async (url, setMovieArr) => {
+  const request = await fetch(url);
+  const data = await request.json();
+
+  setMovieArr(data.results);
+  console.log(data.results);
+  return data;
+};
 
 function App() {
+  const trendingMovisUrl = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;
+  const [movieArr, setMovieArr] = useState([]);
+
+  useEffect(() => {
+    dataFetcher(trendingMovisUrl, setMovieArr);
+  }, [trendingMovisUrl]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {movieArr.length > 0
+        ? movieArr.map((itemMovie, index) => {
+            return <div>{itemMovie.original_title}</div>;
+          })
+        : ""}
     </div>
   );
 }
