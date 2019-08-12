@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import API_KEY from "./api-config";
+import Header from "./Header";
+import API_KEY from "../api-config";
+import Movie from "./Movie";
 
 const dataFetcher = async (url, setMovieArr) => {
   const request = await fetch(url);
@@ -20,9 +22,16 @@ function App() {
 
   return (
     <div className="App">
+      <Header title={"Movie SA"} />
       {movieArr.length > 0
         ? movieArr.map((itemMovie, index) => {
-            return <div>{itemMovie.original_title}</div>;
+            return (
+              <Movie
+                key={index}
+                movieTitle={itemMovie.original_title}
+                movieImageUrl={itemMovie.backdrop_path}
+              />
+            );
           })
         : ""}
     </div>
