@@ -1,9 +1,6 @@
-
-
 # React Hooks Crash Course 2019 including Jest and Enzyme and deploying to a server
 
 You can follow this tutorial on this link: [YouTube](http://www.youtube.com/watch?v=w4Yce2TutTE&t=299s)
-
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -33,4 +30,3 @@ The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-

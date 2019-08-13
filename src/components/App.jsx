@@ -13,12 +13,12 @@ const dataFetcher = async (url, setMovieArr) => {
 };
 
 function App() {
-  const trendingMovisUrl = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;
+  const trendingMovieUrl = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;
   const [movieArr, setMovieArr] = useState([]);
 
   useEffect(() => {
-    dataFetcher(trendingMovisUrl, setMovieArr);
-  }, [trendingMovisUrl]);
+    dataFetcher(trendingMovieUrl, setMovieArr);
+  }, [trendingMovieUrl]);
 
   return (
     <div className="App">
