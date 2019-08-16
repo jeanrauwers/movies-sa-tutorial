@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ModalComponent from "./Modal";
 import Header from "./Header";
 import API_KEY from "../api-config";
 import Movie from "./Movie";
@@ -15,26 +16,36 @@ const dataFetcher = async (url, setMovieArr) => {
 function App() {
   const trendingMovieUrl = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;
   const [movieArr, setMovieArr] = useState([]);
+  const [modalSelectedMovie, setModalSelectedMovie] = useState();
+  const [modalInitialState, setModalInitialState] = useState(false);
 
   useEffect(() => {
     dataFetcher(trendingMovieUrl, setMovieArr);
   }, [trendingMovieUrl]);
 
   return (
-    <div className="App">
+    <>
       <Header title={"Movie SA"} />
-      {movieArr.length > 0
-        ? movieArr.map((itemMovie, index) => {
-            return (
-              <Movie
-                key={index}
-                movieTitle={itemMovie.original_title}
-                movieImageUrl={itemMovie.backdrop_path}
-              />
-            );
-          })
-        : ""}
-    </div>
+      <div className="movies-grid-container ">
+        {movieArr.length > 0
+          ? movieArr.map((itemMovie, index) => {
+              return (
+                <Movie
+                  key={index}
+                  setModalInitialState={setModalInitialState}
+                  itemMovie={itemMovie}
+                  setModalSelectedMovie={setModalSelectedMovie}
+                />
+              );
+            })
+          : ""}
+      </div>
+      <ModalComponent
+        modalState={modalInitialState}
+        setModalState={setModalInitialState}
+        modalSelectedMovie={modalSelectedMovie}
+      />
+    </>
   );
 }
 
