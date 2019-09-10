@@ -11,8 +11,6 @@ const ModalComponent = ({
     setModalState(!modalState);
   };
 
-  console.log(modalState);
-
   return (
     <div>
       <Modal isOpen={modalState} toggle={toggleState} className={className}>
